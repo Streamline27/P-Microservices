@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: process-node
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+    statusPageUrlPath: ${server.servlet.context-path}/actuator/info
+    healthCheckUrlPath: ${server.servlet.context-path}/actuator/health
+server:
+  port: 8084
+  servlet:
+    context-path: /process

@@ -22,18 +22,6 @@ public class LoansApplication {
     @Bean
     public Docket proxy() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .host("localhost:8080")
-                .groupName("1-gateway-proxy")
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-    }
-
-    @Bean
-    public Docket direct() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("2-direct-access")
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
