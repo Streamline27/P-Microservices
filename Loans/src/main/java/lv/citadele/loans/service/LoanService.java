@@ -1,7 +1,7 @@
 package lv.citadele.loans.service;
 
 import lombok.extern.slf4j.Slf4j;
-import lv.citadele.loans.UserException;
+import lv.citadele.loans.util.UserException;
 import lv.citadele.loans.api.LoanDTO;
 import lv.citadele.loans.api.ScheduleDTO;
 import lv.citadele.loans.service.converter.ScheduleConverter;
@@ -9,7 +9,6 @@ import lv.citadele.loans.model.Loan;
 import lv.citadele.loans.model.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.rmi.runtime.Log;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;

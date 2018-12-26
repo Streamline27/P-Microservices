@@ -1,4 +1,4 @@
-package lv.citadele.process;
+package lv.citadele.process.utils;
 
 import lv.citadele.process.api.ExceptionJson;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package lv.citadele.process.features;
 
 import lombok.extern.slf4j.Slf4j;
-import lv.citadele.process.UserException;
+import lv.citadele.process.utils.UserException;
 import lv.citadele.process.api.LoanRequestJson;
 import lv.citadele.process.features.util.LoanRequestConverter;
 import lv.citadele.process.model.LoanRequest;

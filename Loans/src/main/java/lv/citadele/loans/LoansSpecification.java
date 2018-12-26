@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lv.citadele.loans.api.LoanDTO;
 import lv.citadele.loans.api.ScheduleDTO;
+import lv.citadele.loans.util.UserException;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Api(description = "Loan service related functionality")

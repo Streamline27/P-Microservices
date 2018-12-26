@@ -12,6 +12,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 public class ZuulApplication {
 
+    /**
+     * http://localhost:8080/swagger-ui.html
+     * Load balanced swagger for both services
+     */
     public static void main(String[] args) {
         SpringApplication.run(ZuulApplication.class, args);
     }

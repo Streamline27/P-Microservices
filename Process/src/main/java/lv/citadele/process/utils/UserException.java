@@ -1,4 +1,4 @@
-package lv.citadele.process;
+package lv.citadele.process.utils;
 
 public class UserException extends Exception {
     public UserException(String message) {

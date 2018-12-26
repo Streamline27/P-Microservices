@@ -6,7 +6,7 @@ import lv.citadele.process.features.util.LoanRequestConverter;
 import lv.citadele.process.model.LoanRequest;
 import lv.citadele.process.model.LoanRequestStatus;
 import lv.citadele.process.model.dao.LoanRequestRepository;
-import lv.citadele.process.UserException;
+import lv.citadele.process.utils.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
 package lv.citadele.process;
 
-import io.swagger.annotations.ApiOperation;
 import lv.citadele.process.api.LoanRequestJson;
 import lv.citadele.process.api.LoanRequestValidationJson;
 import lv.citadele.process.api.ScheduleJson;
 import lv.citadele.process.features.*;
 import lv.citadele.process.features.ValidationService;
+import lv.citadele.process.utils.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;

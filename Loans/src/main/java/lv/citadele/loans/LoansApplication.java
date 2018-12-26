@@ -15,17 +15,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 public class LoansApplication {
 
+    /**
+     *  When running two instances use VM params:
+     *  -Dserver.port=8095 -Dmicro-service.instance-name=LoansInstanceA
+     */
     public static void main(String[] args) {
         SpringApplication.run(LoansApplication.class, args);
     }
 
-    @Bean
-    public Docket proxy() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-    }
 }
 

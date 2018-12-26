@@ -4,6 +4,7 @@ import lv.citadele.loans.api.ExceptionDTO;
 import lv.citadele.loans.api.LoanDTO;
 import lv.citadele.loans.api.ScheduleDTO;
 import lv.citadele.loans.service.LoanService;
+import lv.citadele.loans.util.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
