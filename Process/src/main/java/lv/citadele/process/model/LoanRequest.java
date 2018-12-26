@@ -41,9 +41,7 @@ public class LoanRequest {
                        BigDecimal yearlyTurnover,
                        Integer term,
                        String companyName,
-                       String companyType,
-                       LoanRequestStatus status,
-                       Date createdDate) {
+                       String companyType) {
         this.amount = amount;
         this.companyRegistrationNumber = companyRegistrationNumber;
         this.email = email;
@@ -52,7 +50,5 @@ public class LoanRequest {
         this.term = term;
         this.companyName = companyName;
         this.companyType = companyType;
-        this.status = status;
-        this.createdDate = createdDate;
     }
 }

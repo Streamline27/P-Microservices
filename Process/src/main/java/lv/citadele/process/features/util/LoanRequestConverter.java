@@ -19,9 +19,7 @@ public class LoanRequestConverter {
                 json.getYearlyTurnover(),
                 json.getTerm(),
                 json.getCompanyName(),
-                json.getCompanyType(),
-                LoanRequestStatus.createFrom(json.getStatus()),
-                new Date()
+                json.getCompanyType()
         );
     }
 

@@ -1,5 +1,6 @@
 package lv.citadele.process;
 
+import io.swagger.annotations.ApiOperation;
 import lv.citadele.process.api.LoanRequestJson;
 import lv.citadele.process.api.LoanRequestValidationJson;
 import lv.citadele.process.api.ScheduleJson;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ProcessController {
+public class ProcessController implements ProcessSpecification {
 
     private final ValidationService validationService;
     private final LoanRequestService loanRequestService;

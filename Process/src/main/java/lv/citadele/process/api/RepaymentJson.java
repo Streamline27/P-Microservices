@@ -1,5 +1,6 @@
 package lv.citadele.process.api;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,10 @@ import java.util.Date;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RepaymentJson {
     private Date termDate;
+
+    @ApiModelProperty(example = "500")
     private BigDecimal principal;
+
+    @ApiModelProperty(example = "15")
     private BigDecimal commission;
 }

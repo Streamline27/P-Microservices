@@ -1,0 +1,17 @@
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PATCH
+              - OPTIONS
+  application:
+    name: "gateway-server"
+server:
+  port: 8080
