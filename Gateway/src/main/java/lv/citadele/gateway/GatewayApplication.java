@@ -23,6 +23,8 @@ public class GatewayApplication {
                 .route(p -> p.path("/auth/**").uri("lb://auth-server"))
                 .route(p -> p.path("/resource/**").uri("lb://resource-node"))
                 .route(p -> p.path("/storage/**").uri("lb://storage-node"))
+                .route(p -> p.path("/process/**").uri("lb://process-node"))
+                .route(p -> p.path("/loans/**").uri("lb://loans-node"))
                 .build();
     }
 

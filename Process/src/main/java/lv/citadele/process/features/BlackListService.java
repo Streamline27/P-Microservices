@@ -16,8 +16,7 @@ import java.util.Date;
 @Slf4j
 public class BlackListService {
 
-    @Value("blacklistService.num-requests-per-min")
-    private Long MAX_COMPANY_REQUESTS_PER_MINUTE;
+    private static final Long MAX_COMPANY_REQUESTS_PER_MINUTE = 3L;
 
     private final LoanRequestRepository loanRequestRepository;
     private final BlackListRepository blackListRepository;
