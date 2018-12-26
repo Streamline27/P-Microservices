@@ -25,6 +25,6 @@ public class LoansRemoteAccessorRest {
                 .amount(loanRequest.getAmount())
                 .build();
 
-        return restTemplate.postForObject("http://localhost:8085/loans/loan", loanJson, ScheduleJson.class);
+        return restTemplate.postForObject("http://loans-node/loans/loan", loanJson, ScheduleJson.class);
     }
 }

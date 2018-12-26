@@ -14,6 +14,9 @@ import java.util.List;
 @Api(description = "Loan application specific functionality")
 public interface ProcessSpecification {
 
+    @ApiOperation(value = "Get instance name")
+    String ping();
+
     @ApiOperation(value = "Get all requests")
     List<LoanRequestJson> getAll() throws UserException;
 

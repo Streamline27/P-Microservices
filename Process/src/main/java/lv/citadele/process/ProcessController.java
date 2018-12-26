@@ -7,6 +7,7 @@ import lv.citadele.process.api.ScheduleJson;
 import lv.citadele.process.features.*;
 import lv.citadele.process.features.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ import java.util.List;
 
 @RestController
 public class ProcessController implements ProcessSpecification {
+
+    @Value("${micro-service.instance-name:ProcessInstanceUNDEFINED}")
+    private String INSTANCE_NAME;
 
     private final ValidationService validationService;
     private final LoanRequestService loanRequestService;
@@ -31,6 +35,11 @@ public class ProcessController implements ProcessSpecification {
         this.applyService = applyService;
         this.confirmService = confirmService;
         this.rejectService = rejectService;
+    }
+
+    @GetMapping("/ping")
+    public String ping() {
+        return INSTANCE_NAME;
     }
 
     @PatchMapping("/requests/{id}/validate")

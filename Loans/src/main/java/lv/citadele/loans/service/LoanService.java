@@ -1,5 +1,6 @@
 package lv.citadele.loans.service;
 
+import lombok.extern.slf4j.Slf4j;
 import lv.citadele.loans.UserException;
 import lv.citadele.loans.api.LoanDTO;
 import lv.citadele.loans.api.ScheduleDTO;
@@ -8,11 +9,13 @@ import lv.citadele.loans.model.Loan;
 import lv.citadele.loans.model.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.rmi.runtime.Log;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.util.Date;
 
+@Slf4j
 @Service
 public class LoanService {
 
@@ -42,6 +45,8 @@ public class LoanService {
                 .build();
 
         Loan result = loanRepository.save(loan);
+        log.info("Created loan. id: [{}], requestId: [{}]", result.getLoanId(), result.getLoanRequestId());
+
         return converter.toDto(result);
     }
 
