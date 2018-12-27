@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'com.bmuschko:gradle-docker-plugin:4.2.0'
     }
 }
 
@@ -14,17 +15,16 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.bmuschko.docker-spring-boot-application'
 
 group = 'lv.citadele'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+    jcenter()
     mavenCentral()
-    maven { url "https://repo.spring.io/milestone" }
 }
-
-ext['springCloudVersion'] = 'Greenwich.RC2'
 
 dependencies {
     implementation('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
@@ -41,5 +41,12 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.SR2'
+    }
+}
+
+docker {
+    springBootApplication {
+        baseImage = 'openjdk:8-alpine'
+        tag = 'zuul-server'
     }
 }

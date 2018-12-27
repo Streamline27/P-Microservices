@@ -42,7 +42,6 @@ dependencyManagement {
 docker {
     springBootApplication {
         baseImage = 'openjdk:8-alpine'
-        ports = [8761, 8761]
-        tag = 'serviceregistry'
+        tag = 'service-registry'
     }
 }

@@ -16,6 +16,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.bmuschko.docker-spring-boot-application'
+apply plugin: "com.bmuschko.docker-remote-api"
 
 group = 'lv.citadele'
 version = '0.0.1-SNAPSHOT'
@@ -39,6 +40,8 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 
+    compile group: 'com.github.noraui', name: 'ojdbc7', version: '12.1.0.2'
+
     compileOnly 'org.projectlombok:lombok:1.18.2'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
@@ -52,7 +55,6 @@ dependencyManagement {
 docker {
     springBootApplication {
         baseImage = 'openjdk:8-alpine'
-        ports = [8085, 8085]
         tag = 'loans-node'
     }
 }

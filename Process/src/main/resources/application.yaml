@@ -12,4 +12,8 @@ eureka:
 server:
   port: 8084
   servlet:
-    context-path: /process
+    context-path: /process-node
+ribbon:
+  eager-load:
+    enabled: true
+    clients: loans-node

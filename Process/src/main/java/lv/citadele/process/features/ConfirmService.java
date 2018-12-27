@@ -1,9 +1,9 @@
 package lv.citadele.process.features;
 
 import lombok.extern.slf4j.Slf4j;
-import lv.citadele.process.utils.UserException;
+import lv.citadele.process.util.UserException;
 import lv.citadele.process.api.ScheduleJson;
-import lv.citadele.process.features.util.LoansRemoteAccessorRest;
+import lv.citadele.process.features.util.LoansNodeAccessorRest;
 import lv.citadele.process.model.LoanRequest;
 import lv.citadele.process.model.LoanRequestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +15,11 @@ import java.text.MessageFormat;
 @Service
 public class ConfirmService {
 
-    private final LoansRemoteAccessorRest loansAccessor;
+    private final LoansNodeAccessorRest loansAccessor;
     private final LoanRequestService loanRequestService;
 
     @Autowired
-    public ConfirmService(LoansRemoteAccessorRest loansAccessor, LoanRequestService loanRequestService) {
+    public ConfirmService(LoansNodeAccessorRest loansAccessor, LoanRequestService loanRequestService) {
         this.loansAccessor = loansAccessor;
         this.loanRequestService = loanRequestService;
     }

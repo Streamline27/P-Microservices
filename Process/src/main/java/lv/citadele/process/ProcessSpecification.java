@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import lv.citadele.process.api.LoanRequestJson;
 import lv.citadele.process.api.LoanRequestValidationJson;
 import lv.citadele.process.api.ScheduleJson;
-import lv.citadele.process.utils.UserException;
+import lv.citadele.process.util.UserException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

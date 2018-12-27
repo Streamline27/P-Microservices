@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @ControllerAdvice
 public class LoanController implements LoansSpecification {
@@ -30,12 +31,12 @@ public class LoanController implements LoansSpecification {
         return INSTANCE_NAME;
     }
 
-    @PostMapping("/loan")
+    @PostMapping("/loans")
     public ScheduleDTO create(@RequestBody LoanDTO loanRequest) {
         return loanService.create(loanRequest);
     }
 
-    @GetMapping("/loan/{loanId}")
+    @GetMapping("/loans/{loanId}")
     public ScheduleDTO get(@PathVariable("loanId") Long loanId) throws UserException {
         return loanService.get(loanId);
     }

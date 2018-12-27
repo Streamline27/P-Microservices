@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class LoansRemoteAccessorRest {
+public class LoansNodeAccessorRest {
 
     private final RestTemplate restTemplate;
 
     @Autowired
-    public LoansRemoteAccessorRest(RestTemplate restTemplate) {
+    public LoansNodeAccessorRest(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -25,6 +25,6 @@ public class LoansRemoteAccessorRest {
                 .amount(loanRequest.getAmount())
                 .build();
 
-        return restTemplate.postForObject("http://loans-node/loans/loan", loanJson, ScheduleJson.class);
+        return restTemplate.postForObject("http://loans-node/loans-node/loans", loanJson, ScheduleJson.class);
     }
 }

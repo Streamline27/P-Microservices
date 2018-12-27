@@ -1,6 +1,6 @@
 package lv.citadele.process.features;
 
-import lv.citadele.process.utils.UserException;
+import lv.citadele.process.util.UserException;
 import lv.citadele.process.api.LoanRequestJson;
 import lv.citadele.process.features.util.LoanRequestConverter;
 import lv.citadele.process.model.LoanRequest;

@@ -13,4 +13,4 @@ eureka:
 server:
   port: 8085
   servlet:
-    context-path: /loans
+    context-path: /loans-node
