@@ -1,0 +1,42 @@
+version: '3.5'
+services:
+    #
+    # H2 Database
+    #
+    process-h2:
+      image: oscarfonts/h2
+      ports:
+        - "1522:1522"
+        - "82:82"
+      container_name: process-h2
+    #
+    # Process service A
+    #
+    process-node-A:
+      container_name: process-node-A
+      image: process-node:latest
+      ports:
+        - "8090:8090"
+      environment:
+        - "server.port=8090"
+        - "spring.profiles.active=docker"
+        - "micro-service.instance-name=ProcessNodeA"
+        - "EUREKA_URI=http://service-registry:8761/eureka"
+    #
+    # Process service B
+    #
+    process-node-B:
+      container_name: process-node-B
+      image: process-node:latest
+      ports:
+        - "8091:8091"
+      environment:
+        - "server.port=8091"
+        - "spring.profiles.active=docker"
+        - "micro-service.instance-name=ProcessNodeB"
+        - "EUREKA_URI=http://service-registry:8761/eureka"
+
+networks:
+  default:
+    external:
+      name: microservices_network

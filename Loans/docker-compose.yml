@@ -1,0 +1,42 @@
+version: '3.5'
+services:
+    #
+    # H2 Database
+    #
+    loans-h2:
+      image: oscarfonts/h2
+      ports:
+        - "1521:1521"
+        - "81:81"
+      container_name: loans-h2
+    #
+    # Loans service A
+    #
+    loans-node-A:
+      container_name: loans-node-A
+      image: loans-node:latest
+      ports:
+        - "8085:8085"
+      environment:
+        - "server.port=8085"
+        - "spring.profiles.active=docker"
+        - "micro-service.instance-name=LoansNodeA"
+        - "EUREKA_URI=http://service-registry:8761/eureka"
+    #
+    # Loans service B
+    #
+    loans-node-B:
+      container_name: loans-node-B
+      image: loans-node:latest
+      ports:
+        - "8086:8086"
+      environment:
+        - "server.port=8086"
+        - "spring.profiles.active=docker"
+        - "micro-service.instance-name=LoansNodeB"
+        - "EUREKA_URI=http://service-registry:8761/eureka"
+
+networks:
+  default:
+    external:
+      name: microservices_network
