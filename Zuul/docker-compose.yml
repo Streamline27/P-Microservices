@@ -1,15 +1,29 @@
 version: '3.5'
 services:
     #
-    # Service registry
+    # Service registry A
     #
-    service-registry:
-        container_name: service-registry
+    service-registry-a:
+        container_name: service-registry-a
         image: service-registry:latest
         ports:
           - "8761:8761"
         environment:
           - "server.port=8761"
+          - "spring.profiles.active=cluster"
+          - "REPLICA_URI=http://service-registry-b:8762/eureka"
+    #
+    # Service registry B
+    #
+    service-registry-b:
+        container_name: service-registry-b
+        image: service-registry:latest
+        ports:
+          - "8762:8762"
+        environment:
+          - "server.port=8762"
+          - "spring.profiles.active=cluster"
+          - "REPLICA_URI=http://service-registry-a:8761/eureka"
     #
     # Zuul server
     #
@@ -19,7 +33,10 @@ services:
         ports:
           - "8080:8080"
         environment:
-          - "EUREKA_URI=http://service-registry:8761/eureka"
+          - "server.port=8080"
+          - "spring.profiles.active=cluster"
+          - "EUREKA_URI_A=http://service-registry-a:8761/eureka"
+          - "EUREKA_URI_B=http://service-registry-b:8762/eureka"
 
 networks:
   default:

@@ -5,10 +5,15 @@ services:
     #
     loans-h2:
       image: oscarfonts/h2
+      container_name: loans-h2
       ports:
         - "1521:1521"
         - "81:81"
-      container_name: loans-h2
+      environment:
+        - "WEB_PORT=81"
+        - "TCP_PORT=1521"
+      command:
+        bash -c "java -cp /opt/h2/bin/h2*.jar org.h2.tools.Server -web -webAllowOthers -webPort $${WEB_PORT} -tcp -tcpAllowOthers -tcpPort $${TCP_PORT} -baseDir $${DATA_DIR}"
     #
     # Loans service A
     #
@@ -19,9 +24,11 @@ services:
         - "8085:8085"
       environment:
         - "server.port=8085"
-        - "spring.profiles.active=docker"
+        - "spring.profiles.active=cluster"
         - "micro-service.instance-name=LoansNodeA"
-        - "EUREKA_URI=http://service-registry:8761/eureka"
+        - "EUREKA_URI_A=http://service-registry-a:8761/eureka"
+        - "EUREKA_URI_B=http://service-registry-b:8762/eureka"
+
     #
     # Loans service B
     #
@@ -32,9 +39,11 @@ services:
         - "8086:8086"
       environment:
         - "server.port=8086"
-        - "spring.profiles.active=docker"
+        - "spring.profiles.active=cluster"
         - "micro-service.instance-name=LoansNodeB"
-        - "EUREKA_URI=http://service-registry:8761/eureka"
+        - "EUREKA_URI_A=http://service-registry-a:8761/eureka"
+        - "EUREKA_URI_B=http://service-registry-b:8762/eureka"
+
 
 networks:
   default:

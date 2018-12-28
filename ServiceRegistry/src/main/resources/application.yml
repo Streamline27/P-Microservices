@@ -1,3 +1,4 @@
+---
 server:
   port: 8761
 spring:
@@ -14,3 +15,17 @@ logging:
   level:
     com.netflix.eureka: OFF
     com.netflix.discovery: OFF
+
+---
+spring:
+  profiles:
+    active: cluster
+
+eureka:
+  instance:
+    hostname: ${HOST_NAME:localhost}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${REPLICA_URI}

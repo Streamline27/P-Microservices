@@ -29,3 +29,15 @@ ribbon:
   ServerListRefreshInterval: 5
   ReadTimeout: 100000
   ConnectTimeout: 100000
+
+---
+spring:
+  profiles:
+    active: cluster
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URI_A:http://localhost:8761/eureka}, ${EUREKA_URI_B:http://localhost:8762/eureka}

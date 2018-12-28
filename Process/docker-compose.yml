@@ -5,10 +5,15 @@ services:
     #
     process-h2:
       image: oscarfonts/h2
+      container_name: process-h2
       ports:
         - "1522:1522"
         - "82:82"
-      container_name: process-h2
+      environment:
+        - "WEB_PORT=82"
+        - "TCP_PORT=1522"
+      command:
+        bash -c "java -cp /opt/h2/bin/h2*.jar org.h2.tools.Server -web -webAllowOthers -webPort $${WEB_PORT} -tcp -tcpAllowOthers -tcpPort $${TCP_PORT} -baseDir $${DATA_DIR}"
     #
     # Process service A
     #
@@ -19,9 +24,10 @@ services:
         - "8090:8090"
       environment:
         - "server.port=8090"
-        - "spring.profiles.active=docker"
+        - "spring.profiles.active=cluster"
         - "micro-service.instance-name=ProcessNodeA"
-        - "EUREKA_URI=http://service-registry:8761/eureka"
+        - "EUREKA_URI_A=http://service-registry-a:8761/eureka"
+        - "EUREKA_URI_B=http://service-registry-b:8762/eureka"
     #
     # Process service B
     #
@@ -32,9 +38,10 @@ services:
         - "8091:8091"
       environment:
         - "server.port=8091"
-        - "spring.profiles.active=docker"
+        - "spring.profiles.active=cluster"
         - "micro-service.instance-name=ProcessNodeB"
-        - "EUREKA_URI=http://service-registry:8761/eureka"
+        - "EUREKA_URI_A=http://service-registry-a:8761/eureka"
+        - "EUREKA_URI_B=http://service-registry-b:8762/eureka"
 
 networks:
   default:

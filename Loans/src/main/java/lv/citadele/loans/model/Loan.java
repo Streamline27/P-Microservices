@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class Loan {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private Long loanId;
     private Long loanRequestId;
 

@@ -22,7 +22,7 @@ ribbon:
 
 ---
 spring:
-  profiles: docker
+  profiles: cluster
   datasource:
     url: jdbc:h2:tcp://process-h2:1522/test
     username: sa
@@ -31,3 +31,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URI_A:http://localhost:8761/eureka}, ${EUREKA_URI_B:http://localhost:8762/eureka}
