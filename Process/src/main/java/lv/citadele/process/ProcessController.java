@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestController
 @ControllerAdvice
-@RequestMapping(path = "/process")
 public class ProcessController implements ProcessSpecification {
 
     @Value("${micro-service.instance-name:ProcessInstanceUNDEFINED}")
