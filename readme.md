@@ -29,11 +29,12 @@ Works as a gate to microservice system
     
 # Running everything
 Each microservice can function **independently** with use of H2 database and swagger.
-(However run service registry, so there wont be huge stacktrace exceptions)
+(However service registry is required, so there wont be huge stacktrace exceptions,
+when services tries to register in service discovery)
 
-It is also possible to run the system in **cluster** by the means of docker. (This is cool actually)
+It is also possible to run the system in **cluster** by the means of docker. (This is cool actually, try it out)
 
-To run services in cluster create separate terminals and::
+To run services in cluster start separate terminals and::
 1) Go to `Zuul/` and execute `docker-compose up`
 2) Go to `Process/` and execute `docker-compose up`
 3) Go to `Loans/` and execute `docker-compose up`
