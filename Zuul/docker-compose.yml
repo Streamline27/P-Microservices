@@ -10,7 +10,6 @@ services:
           - "8761:8761"
         environment:
           - "server.port=8761"
-          - "EUREKA_URI=service-registry/eureka"
     #
     # Zuul server
     #
@@ -20,7 +19,7 @@ services:
         ports:
           - "8080:8080"
         environment:
-          - "EUREKA_URI=http://service-registry/eureka"
+          - "EUREKA_URI=http://service-registry:8761/eureka"
 
 networks:
   default:
