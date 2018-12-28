@@ -1,4 +1,4 @@
-##Installation instructions:
+## Installation instructions:
 
 1) Checkout repository
 2) `File > New > Module from existing source > build.gradle` Do that for each microservice, so that all microservices
