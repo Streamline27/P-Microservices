@@ -4,7 +4,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+      defaultZone:  ${EUREKA_URI:http://localhost:8761/eureka}
   instance:
     prefer-ip-address: true
 server:
@@ -26,5 +26,6 @@ zuul:
       retryable: true
   ignored-services: '*'
 ribbon:
+  ServerListRefreshInterval: 5
   ReadTimeout: 100000
   ConnectTimeout: 100000

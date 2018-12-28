@@ -1,54 +1,26 @@
 version: '3.5'
 services:
-#    loans-node-A:
-#        container_name: loans-node-A
-#        image: loans-node:latest
-#        ports:
-#        - published: 8085
-#          target: 8085
-#        environment:
-#        - server.port=8085
-#        - micro-service.instance-name=LoansInstanceA
-#        - EUREKA_URI=http://service-registry:8761/eureka
-#
-#    loans-node-B:
-#        container_name: loans-node-B
-#        image: loans-node:latest
-#        ports:
-#        - published: 8086
-#          target: 8086
-#        environment:
-#        - server.port=8086
-#        - micro-service.instance-name=LoansInstanceB
-#        - EUREKA_URI=http://service-registry:8761/eureka
-
-#    process-node-A:
-#        container_name: process-node-A
-#        image: process-node:latest
-#        ports:
-#        - published: 8084
-#          target: 8084
-#        environment:
-#        - server.port=8084
-#        - micro-service.instance-name=ProcessInstanceA
-#        - EUREKA_URI=http://service-registry:8761/eureka
-
+    #
+    # Service registry
+    #
     service-registry:
         container_name: service-registry
         image: service-registry:latest
         ports:
-        - published: 8761
-          target: 8761
-
+          - "8761:8761"
+        environment:
+          - "server.port=8761"
+          - "EUREKA_URI=service-registry/eureka"
+    #
+    # Zuul server
+    #
     zuul-server:
         container_name: zuul-server
         image: zuul-server:latest
         ports:
-        - published: 8080
-          target: 8080
+          - "8080:8080"
         environment:
-        - EUREKA_URI=http://service-registry:8761/eureka
-
+          - "EUREKA_URI=http://service-registry/eureka"
 
 networks:
   default:
