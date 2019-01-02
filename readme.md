@@ -48,7 +48,7 @@ To run services in cluster start separate terminals and::
 3) Try different endoint flows on Process node swagger.
 4) Each microservice can be accessed directly or through Zool
     * e.g. `http://localhost:8080/loans-node/ping` and `http://localhost:8086/loans-node/ping`
-5) There are BDD tests in Zuul module. Check out request-loan.feature file. Didn't go for a lot of testing. Just wanted to show some examples of how it may be done.
+5) There are BDD tests in Zuul module. Check **request-loan.feature** file. Didn't go for a lot of testing. Just wanted to show some examples of how it may be done.
     
 # Links
 
