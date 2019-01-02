@@ -56,8 +56,8 @@ To run services in cluster start separate terminals and::
 
 | Node                   | URL                                   |
 | -----------------------|---------------------------------------|
-| service-registry-a     | http://localhost:8762/                |
-| service-registry-b     | http://localhost:8763/                |
+| service-registry-a     | http://localhost:8761/                |
+| service-registry-b     | http://localhost:8762/                |
 | zuul-server            | http://localhost:8080/                |
 | zuul-server swagger    | http://localhost:8080/swagger-ui.html |
 
