@@ -23,17 +23,20 @@ public class RepaymentService {
     }
 
     public List<Repayment> computeFor(LoanDTO loanRequest, BigDecimal interestRate) {
-        final int term = loanRequest.getTerm();
-        final BigDecimal monthlyPrincipal  = calculator.getMonthlyPrincipal(loanRequest);
-        final BigDecimal monthlyCommission = calculator.getMonthlyCommission(loanRequest, interestRate);
 
-        return getRepayments(term, monthlyPrincipal, monthlyCommission);
+        BigDecimal monthlyPrincipal  = calculator.getMonthlyPrincipal(loanRequest);
+        BigDecimal monthlyCommission = calculator.getMonthlyCommission(loanRequest, interestRate);
+
+        return getRepayments(loanRequest.getTerm(), monthlyPrincipal, monthlyCommission);
     }
 
     private List<Repayment> getRepayments(int repaymentNumber, BigDecimal monthlyPrincipal, BigDecimal monthlyCommision) {
-        MonthTracer monthTracer = new MonthTracer();
+
         List<Repayment> repayments = new ArrayList<>();
+        MonthTracer monthTracer = new MonthTracer();
+
         for (int i = 0; i < repaymentNumber; i++) {
+
             monthTracer.incrementMonth();
             repayments.add(
                     new Repayment(
