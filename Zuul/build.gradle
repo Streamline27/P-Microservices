@@ -32,7 +32,14 @@ dependencies {
 
     implementation group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.2.RELEASE'
 
+    testImplementation('io.rest-assured:rest-assured:3.2.0')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    testImplementation('info.cukes:cucumber-java:1.2.4')
+    testImplementation('info.cukes:cucumber-junit:1.2.4')
+    testImplementation('info.cukes:cucumber-picocontainer:1.2.4')
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.2'
 
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'

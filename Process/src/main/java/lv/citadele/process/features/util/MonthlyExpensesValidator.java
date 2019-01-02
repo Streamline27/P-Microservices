@@ -9,11 +9,11 @@ import java.math.RoundingMode;
 @Service
 public class MonthlyExpensesValidator {
 
-    private static final int MONTHS_IN_A_YEAR = 12;
-    private static final Double INTEREST_RATE = 0.3;
+    private static final BigDecimal MONTHS_IN_A_YEAR = new BigDecimal(12);
+    private static final BigDecimal INTEREST_RATE = new BigDecimal(0.3);
 
     public boolean monthlyExpensesExceedMaxLimit(LoanRequest loanRequest) {
-        if (yearlyTurnOverNotSpecified(loanRequest)) return true;
+        if (yearlyTurnoverNotSpecified(loanRequest)) return true;
 
         final BigDecimal maxAllowedMonthlyLimit = getMaxAllowedMonthlyLimit(loanRequest);
         final BigDecimal monthlyExpenses = getMonthlyExpenses(loanRequest);
@@ -23,18 +23,20 @@ public class MonthlyExpensesValidator {
 
     private BigDecimal getMonthlyExpenses(LoanRequest loanRequest) {
         final BigDecimal amount = loanRequest.getAmount();
-        final Integer term = loanRequest.getTerm();
-        return amount.divide(BigDecimal.valueOf(term), RoundingMode.HALF_UP);
+        final BigDecimal term = new BigDecimal(loanRequest.getTerm());
+
+        return amount.divide(term, RoundingMode.HALF_UP);
     }
 
     private BigDecimal getMaxAllowedMonthlyLimit(LoanRequest loanRequest) {
         final BigDecimal yearTurnover = loanRequest.getYearlyTurnover();
+
         return yearTurnover
-                .divide(BigDecimal.valueOf(MONTHS_IN_A_YEAR), RoundingMode.HALF_UP)
-                .multiply(BigDecimal.valueOf(INTEREST_RATE));
+                .divide(MONTHS_IN_A_YEAR, RoundingMode.HALF_UP)
+                .multiply(INTEREST_RATE);
     }
 
-    private boolean yearlyTurnOverNotSpecified(LoanRequest loanRequest) {
+    private boolean yearlyTurnoverNotSpecified(LoanRequest loanRequest) {
         return loanRequest.getYearlyTurnover() == null;
     }
 }

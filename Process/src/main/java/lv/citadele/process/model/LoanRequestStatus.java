@@ -4,25 +4,25 @@ import java.util.stream.Stream;
 
 public enum  LoanRequestStatus {
     PENDING(config()
-            .isConfirmationAllowed(false)
-            .isRejectAllowed(true)
-            .isValidationAllowed(true)),
+            .confirmationAllowed(false)
+            .rejectAllowed(true)
+            .validationAllowed(true)),
     VALIDATED(config()
-            .isConfirmationAllowed(true)
-            .isRejectAllowed(true)
-            .isValidationAllowed(true)),
+            .confirmationAllowed(true)
+            .rejectAllowed(true)
+            .validationAllowed(true)),
     INVALID(config()
-            .isConfirmationAllowed(false)
-            .isRejectAllowed(true)
-            .isValidationAllowed(true)),
+            .confirmationAllowed(false)
+            .rejectAllowed(true)
+            .validationAllowed(true)),
     REJECTED(config()
-            .isConfirmationAllowed(false)
-            .isRejectAllowed(false)
-            .isValidationAllowed(false)),
+            .confirmationAllowed(false)
+            .rejectAllowed(false)
+            .validationAllowed(false)),
     CONFIRMED(config()
-            .isConfirmationAllowed(false)
-            .isRejectAllowed(false)
-            .isValidationAllowed(false)),
+            .confirmationAllowed(false)
+            .rejectAllowed(false)
+            .validationAllowed(false)),
     ;
 
     private final Config config;
@@ -60,17 +60,17 @@ public enum  LoanRequestStatus {
         private boolean confirmationAllowed;
         private boolean rejectAllowed;
 
-        private Config isValidationAllowed(boolean validationAllowed) {
+        private Config validationAllowed(boolean validationAllowed) {
             this.validationAllowed = validationAllowed;
             return this;
         }
 
-        private Config isConfirmationAllowed(boolean confirmationAllowed) {
+        private Config confirmationAllowed(boolean confirmationAllowed) {
             this.confirmationAllowed = confirmationAllowed;
             return this;
         }
 
-        private Config isRejectAllowed(boolean rejectAllowed) {
+        private Config rejectAllowed(boolean rejectAllowed) {
             this.rejectAllowed = rejectAllowed;
             return this;
         }
