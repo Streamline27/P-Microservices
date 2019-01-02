@@ -69,7 +69,7 @@ To run services in cluster start separate terminals and::
 | loans-node-A swagger   | http://localhost:8085/loans-node/swagger-ui.html  |
 | loans-node-B           | http://localhost:8086/loans-node/ping             |
 | loans-node-A swagger   | http://localhost:8086/loans-node/swagger-ui.html  |
-| loans-db console       | http://http://localhost:81                        |
+| loans-db console       | http://localhost:81                        |
 
 #### Process docker-compose
 
@@ -79,5 +79,5 @@ To run services in cluster start separate terminals and::
 | process-node-A swagger | http://localhost:8090/process-node/swagger-ui.html |
 | process-node-B         | http://localhost:8091/process-node/ping            |
 | process-node-A swagger | http://localhost:8091/process-node/swagger-ui.html |
-| process-db console     | http://http://localhost:82 (set Jdbc port to 1522) |
+| process-db console     | http://localhost:82 (set Jdbc port to 1522) |
 
