@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.MessageFormat;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ import java.util.Date;
 @Service
 public class LoanService {
 
-    private final static BigDecimal INTEREST_RATE = new BigDecimal(0.3);
+    private final static BigDecimal INTEREST_RATE = new BigDecimal(0.3).setScale(1, RoundingMode.HALF_UP);
 
     private final RepaymentService repaymentService;
     private final LoanRepository loanRepository;
@@ -32,15 +33,13 @@ public class LoanService {
     }
 
     public ScheduleDTO create(LoanDTO loanRequest) {
-        final Integer term = loanRequest.getTerm();
-        final Date now = new Date();
 
         Loan loan = Loan.builder()
                 .loanRequestId(loanRequest.getLoanRequestId())
                 .interestRate(INTEREST_RATE)
                 .repayments(repaymentService.computeFor(loanRequest, INTEREST_RATE))
-                .startDate(now)
-                .term(term)
+                .term(loanRequest.getTerm())
+                .startDate(new Date())
                 .build();
 
         Loan result = loanRepository.save(loan);
@@ -52,7 +51,11 @@ public class LoanService {
     public ScheduleDTO get(Long loanId) throws UserException {
         return loanRepository.findById(loanId).map(converter::toDto)
                 .orElseThrow(() ->
-                        new UserException(MessageFormat.format("Loan with id [{0}] not found", loanId))
+                        new UserException(getMessage(loanId))
                 );
+    }
+
+    private String getMessage(Long loanId) {
+        return MessageFormat.format("Loan with id [{0}] not found", loanId);
     }
 }

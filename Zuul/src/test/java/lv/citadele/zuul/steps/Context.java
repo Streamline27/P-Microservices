@@ -7,4 +7,5 @@ public class Context {
     private Long savedRequestId;
     private Long requestId;
     private Long loanId;
+    private boolean validated;
 }

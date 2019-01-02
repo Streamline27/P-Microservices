@@ -3,10 +3,9 @@ package lv.citadele.zuul.steps;
 import lv.citadele.zuul.dto.LoanRequestModel;
 import lv.citadele.zuul.ApiClient;
 
-import java.math.BigDecimal;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertFalse;
 
 public class LoanRequestSteps {
 
@@ -22,6 +21,10 @@ public class LoanRequestSteps {
         assertThat(context.getRequestId(), is(context.getSavedRequestId()));
     }
 
+    public void requestIsInvalid() {
+        assertFalse(context.isValidated());
+    }
+
     public void userGetsCreatedLoan() {
         Long savedLoanRequestId = client.getLoan(context.getLoanId())
                 .extract()
@@ -31,7 +34,7 @@ public class LoanRequestSteps {
         context.setSavedRequestId(savedLoanRequestId);
     }
 
-    public void userConfirmsValidatedLoanRequest() {
+    public void userConfirmsLoanRequest() {
         Long loanId = client.confirmRequest(context.getRequestId())
                 .extract()
                 .jsonPath()
@@ -41,27 +44,20 @@ public class LoanRequestSteps {
     }
 
     public void userValidatesCreatedLoanRequest() {
-        client.validateRequest(context.getRequestId());
+        boolean validated = client.validateRequest(context.getRequestId())
+            .extract()
+            .jsonPath()
+            .getBoolean("validated");
+
+        context.setValidated(validated);
     }
 
-    public void userCreatesLoanRequests() {
-        Long loanRequestId = client.createRequest(getLoanRequest())
+    public void userCreatesLoanRequests(LoanRequestModel loanRequest) {
+        Long loanRequestId = client.createRequest(loanRequest)
                 .extract()
                 .jsonPath()
                 .getLong("id");
 
         context.setRequestId(loanRequestId);
-    }
-
-    private LoanRequestModel getLoanRequest() {
-        return LoanRequestModel.builder()
-                .yearlyTurnover(new BigDecimal(300000))
-                .companyRegistrationNumber("LV-1063")
-                .amount(new BigDecimal(3000))
-                .email("company@company.com")
-                .companyName("Vasjas Inc.")
-                .phone("203485748")
-                .term(6)
-                .build();
     }
 }
